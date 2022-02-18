@@ -55,7 +55,7 @@ func get_all() []Person {
 	return people
 }
 
-func get_person_by_name(id string) []Person {
+func get_person_by_id(id string) []Person {
 	db, err := gorm.Open("sqlite3", "test.sqlite3")
 	if err != nil {
 		panic("failed to connect database\n")
@@ -96,7 +96,7 @@ func main() {
 			c.String(401, "you can't read admin record HAHAHA!!")
 			return
 		}
-		person := get_person_by_name(id)
+		person := get_person_by_id(id)
 
 		c.HTML(200, "index.tmpl", gin.H{
 			"people": person,
